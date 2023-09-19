@@ -1,0 +1,11 @@
+=================== Battle Help ===================
+This is the combat menu when you engage in battle
+with enemies.
+
+The Commands:
+(A)ttack    - Attacks the enemy/boss on that level
+(G)ift      - Gift the enemy a gift
+(F)lee      - Flees the fight. It's a random chance.
+(B)ackpack  - Check what's in your backpack
+(I)nfo      - Gives info on the enemy/boss on that level
+(H)elp      - Brings the help menu

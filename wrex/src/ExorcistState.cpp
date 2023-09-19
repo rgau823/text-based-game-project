@@ -1,43 +1,60 @@
-#include "ExorcistState.h"
-
 #include <iostream>
 
+#include "ExorcistState.h"
+#include "RandomNumberGenerator.h"
 
-SaneState::SaneState() : ExorcistState("Sane") {}
+SaneState::SaneState() : ExorcistState(Type::Sane) {}
 
-bool SaneState::attack(Enemy *e) {
-    std::cout << "attack() in the SaneState()" << std::endl;
+bool SaneState::attack(Character *c) {
     return true;
 }
 
-bool SaneState::flee(Enemy *in) {
-    std::cout << "flee() in the SaneState()" << std::endl;
-    return true;
+void SaneState::transmogrify(Character *c) {
+    c->setModifier(3);
+}
+
+bool SaneState::flee() {
+    return getRandomBoolean(0.75);
+}
+
+void SaneState::printState() {
+    std::cout << "Sane" << std::endl;
 }
 
 
+InjuredState::InjuredState() : ExorcistState(Type::Injured) {}
 
-InjuredState::InjuredState() : ExorcistState("Injured") {}
-
-bool InjuredState::attack(Enemy *e) {
-    std::cout << "attack() in the InjuredState()" << std::endl;
-    return true;
+bool InjuredState::attack(Character *c) {
+    return getRandomBoolean(0.75);
 }
 
-bool InjuredState::flee(Enemy *e) {
-    std::cout << "flee() in the InjuredState()" << std::endl;
-    return true;
+void InjuredState::transmogrify(Character *c) {
+    c->setModifier(2);
+}
+
+bool InjuredState::flee() {
+    return getRandomBoolean(0.75);
+}
+
+void InjuredState::printState() {
+    std::cout << "Injured" << std::endl;
 }
 
 
-PossessedState::PossessedState() : ExorcistState("Possessed") {}
+PossessedState::PossessedState() : ExorcistState(Type::Possessed) {}
 
-bool PossessedState::attack(Enemy *e) {
-    std::cout << "attack() in the PossessedState()" << std::endl;
-    return true;
+bool PossessedState::attack(Character *c) {
+    return getRandomBoolean(0.50);
 }
 
-bool PossessedState::flee(Enemy *e) {
-    std::cout << "flee() in the PossessedState()" << std::endl;
-    return false;
+void PossessedState::transmogrify(Character *c) {
+    c->setModifier(1);
+}
+
+bool PossessedState::flee() {
+    return getRandomBoolean(0.50);
+}
+
+void PossessedState::printState() {
+    std::cout << "Possessed" << std::endl;
 }

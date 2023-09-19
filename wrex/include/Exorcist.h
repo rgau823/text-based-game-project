@@ -1,8 +1,8 @@
 /**
  * @authors Brayden Carlson         <brayden.carlson@uleth.ca>,
- *          Angela De Sousa Costa   <name@uleth.ca>,
- *          Rocky Au                <name@uleth.ca>,
- *          Juhyoung Park           <name@uleth.ca>
+ *          Angela De Sousa Costa   <angela.desousacosta@uleth.ca>,
+ *          Rocky Au                <rocky.au@uleth.ca>,
+ *          Juhyoung Park           <juhyoung.park@uleth.ca>
  *
  * @date October 24, 2021
  */
@@ -10,62 +10,138 @@
 #ifndef EXORCIST_H
 #define EXORCIST_H
 
-#include "Character.h"
-#include "ExorcistState.h"
-
 #include <string>
 #include <vector>
 
+#include "Character.h"
+#include "Enemy.h"
+#include "Exception.h"
+#include "ExorcistState.h"
+#include "NPC.h"
+
+/**
+* A concrete class derived from the Character base class.
+* The Exorcist is the main character, and consists of
+* three states that will determine how likely an action
+* will succeed and the amount of stat bonuses applied.
+*/
 
 class Exorcist : public Character {
  public:
+    /**
+    * The default constructor for Exorcist.
+    */
     Exorcist();
 
+    /**
+    * A constructor for the Exorcist class.
+    * @param[in] n the name of the Exorcist to be created.
+    */
+    Exorcist(std::string n);
+
+    /**
+    * The destructor for Exorcist.
+    */
     virtual ~Exorcist();
 
-    std::string getName();
+    /**
+    * The Exorcist attempts to attack a Character, friend or foe.
+    * This method is affected by ExorcistState.
+    * @param[in] c the pointer to a Character to attack.
+    * @returns true if the attack was successful, false otherwise.
+    */
+    virtual bool attack(Character* c);
 
-    bool move();
+    /**
+    * Alter the Exorcist's modifier(s).
+    * This method is affected by ExorcistState.
+    * @param[in] c the pointer to a Character to transmogrify.
+    */
+    virtual void transmogrify(Character* c);
 
-    double interact();
+    /**
+    * The Exorcist attempts to talk to a NPC, friend or foe.
+    * @param[in] c the pointer to a NPC to talk to.
+    */
+    virtual void talk(NPC* n);
 
-    bool negotiate();
+    /**
+    * The Exorcist attempts to gift a Enemy an Item, friend or foe.
+    * @param[in] c the pointer to a Enemy to gift
+    * @param[in] i the pointer to an Item to gift
+    * @returns true if gifting was successful, false otherwise.
+    */
+    virtual bool takeItem(Item* i);
 
-    bool pickupItem();
+    /**
+    * The Exorcist attempts to flee from combat with an Enemy.
+    * This method is affected by ExorcistState.
+    * @returns true if able to flee, false otherwise.
+    */
+    virtual bool flee();
 
-    bool equipItem();
+    /**
+    * Set the state of the Exorcist, depending on the current health.
+    */
+    virtual void update();
 
-    bool useItem();
+    /**
+    * Get the backpack of the Exorcist.
+    * @returns the backpack of the Exorcist as a vector of Item.
+    */
+    std::vector<Item*> getBackpack();
 
-    bool dropItem();
+    /**
+    * Get an Item from the Exorcist's backpack.
+    * @param[in] i the index of the Item.
+    * @returns a pointer to the Item.
+    */
+    Item* getItem(unsigned int i);
 
-    bool setHealth(double);
+    /**
+    * Use an Item from the Exorcist's backpack.
+    * @param[in] i the index of the Item.
+    */
+    void useItem(unsigned int i);
 
-    bool setAttack(double);
+    /**
+    * Drop an Item from the Exorcist's backpack.
+    * @param[in] i the index of the Item.
+    * @returns a pointer to the Item.
+    */
+    Item* dropItem(unsigned int i);
 
-    bool setDefense(double);
+    /**
+    * Get the state of the Exorcist.
+    * @returns the state of the Exorcist as an ExorcistState*.
+    */
+    ExorcistState* getState();
 
-    bool setPosition(unsigned int);
+    /**
+    * Set the state of the Exorcist.
+    * @param[in] s the state to be set for the Exorcist.
+    */
+    void setState(ExorcistState::Type s);
 
+    /**
+    * The Exorcist attempts to interact with the environment.
+    * @returns true if there is an interaction to be had, false otherwise.
+    */
+    bool interact();
+
+    /**
+    * View the content of the Exorcist's backpack.
+    */
     void viewBackpack();
 
-    void viewStatus();
-
-    unsigned int getPosition();
-
-    bool attack(Enemy*);
-
-    bool talk(Enemy*);
-
-    bool gift(Enemy*);
-
-    bool flee(Enemy*);
+    /**
+    * View the state of the Exorcist.
+    */
+    void viewState();
 
  private:
-    std::string name;
-    ExorcistState* state;
-    std::vector<std::string> backpack;
+    ExorcistState* state = nullptr;
+    std::vector<Item*> backpack;
 };
 
-
-#endif  // EXORCIST_H
+#endif // EXORCIST_H

@@ -1,0 +1,5 @@
+=================== Normal Mode ===================
+     (N)ext         (P)revious     (I)nteract
+     (F)ight        t(A)lk         (E)xamine
+     (B)ag          (U)se          (D)rop
+     (T)ake         (H)elp         (Q)uit

@@ -1,0 +1,28 @@
+=================== Normal Help ===================
+
+The objective of this game is to clear each of the 4
+stages that have 4 levels. You can either choose the
+pacifist route, or the genocide route.
+
+If you want to go the pacifist route, make sure that you
+don't attack any of the enemies and do the puzzles so
+the boss allows you to pass through.
+
+If you want to go the genocide route, make sure that you
+attack and kill all of the enemies.
+
+
+The Commands:
+
+(N)ext      - Go to the next level
+(P)revious  - Go to the previous level
+(I)nertact  - Interacts with the levels
+(F)ight     - Fight whatever enemy/boss is on that level
+t(A)lk      - Talk to whatever enemy/boss is on that level
+(E)xamine   - Examine the level
+(B)ag       - Check what's in your bag
+(U)se       - Use an item that's in your bag
+(D)rop      - Drop an item that's in your bag
+(T)ake      - Take an item from the level
+(H)elp      - Brings the help menu
+(Q)uit      - Quits the game (doesn't save progress)

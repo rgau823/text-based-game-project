@@ -1,0 +1,3 @@
+=================== Battle Mode ===================
+         (A)ttack      (G)ift     (F)lee
+         (B)ackpack    (I)nfo     (H)elp
